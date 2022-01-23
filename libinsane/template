@@ -1,0 +1,40 @@
+# Template file for 'libinsane'
+pkgname=libinsane
+version=1.0.9
+revision=1
+archs="i686 x86_64"
+#wrksrc=
+#create_wrksrc=yes
+build_style=meson
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends=""
+makedepends="glib-devel gobject-introspection gtk-doc pkg-config sane-devel vala"
+depends=""
+short_desc="Cross-platform library to access scanners"
+maintainer="Fryderyk Dziarmagowski <freddy@freddix.org>"
+license="LGPL-3.0-or-later"
+homepage="https://gitlab.gnome.org/World/OpenPaperwork/libinsane"
+distfiles="https://gitlab.gnome.org/World/OpenPaperwork/${pkgname}/-/archive/${version}/${pkgname}-${version}.tar.gz"
+checksum=cbc70ed0ebee92472f0d3655f8635e4a9c6ce3c57322fb1637fe732389937dc5
+
+do_check() {
+	meson test -C build --print-errorlogs
+}
+
+libinsane-devel_package() {
+	short_desc="Cross-platform library to access scanners - development files"
+        depends="libinsane-${version}_${revision}"
+        pkg_install() {
+                vmove usr/include/libinsane
+                vmove usr/include/libinsane-gobject
+                vmove usr/lib/pkgconfig
+                vmove "usr/lib/*.so"
+		vmove usr/share/gir-1.0
+                vmove usr/share/gtk-doc
+                vmove usr/share/vala
+        }
+}

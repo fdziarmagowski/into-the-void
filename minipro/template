@@ -1,0 +1,23 @@
+# Template file for 'minipro'
+pkgname=minipro
+version=0.5
+revision=2
+_commit=d04163c8f34d879afd25b97a60d2ff03f054c710
+#archs="i686 x86_64"
+wrksrc="${pkgname}-${_commit}"
+#create_wrksrc=yes
+build_style=gnu-makefile
+#configure_args=""
+make_build_args="PREFIX=/usr SHARE_INSTDIR=/usr/share/minipro"
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="pkg-config which"
+makedepends="libusb-devel"
+depends=""
+short_desc="An open source program for controlling the MiniPRO TL866xx series of chip programmers"
+maintainer="Freddy <freddy@freddix.org>"
+license="GPL-3.0-or-later"
+homepage="https://gitlab.com/DavidGriffith/minipro"
+distfiles="https://gitlab.com/DavidGriffith/minipro/-/archive/${_commit}/minipro-${_commit}.tar.gz"
+checksum=67e78adff2fa061158eded5cb4d947b4620f2e60238f09ca82ad24651d66800b

@@ -1,0 +1,43 @@
+# Template file for 'paperwork'
+pkgname=paperwork
+version=2.0.3
+revision=1
+#wrksrc="pytest-timeout-${version}"
+build_style=meta
+hostmakedepends="git tar wget"
+makedepends="gettext make which python3-devel python3-setuptools ImageMagick"
+#python3-simplebayes python3-Whoosh python3-Levenshtein python3-Pillow"
+#depends="python3-pytest"
+#checkdepends="${depends} python3-pexpect python3-pytest-cov"
+short_desc="Pytest plugin which will terminate tests after a certain timeout"
+#maintainer="Tim Sandquist <tim.sandquist@gmail.com>"
+license="MIT"
+homepage="https://github.com/pytest-dev/pytest-timeout/"
+#distfiles="${PYPI_SITE}/p/pytest-timeout/pytest-timeout-${version}.tar.gz"
+#checksum=20b3113cf6e4e80ce2d403b6fb56e9e1b871b510259206d40ff8d609f48bda76
+_commit="b6d0a1edfda65635231dc274c4663ca8a9a59c70"
+
+do_fetch() {
+	git clone https://gitlab.gnome.org/World/OpenPaperwork/paperwork.git ${wrksrc}
+	cd ${wrksrc}
+	git checkout ${_commit}
+}
+
+do_build() {
+	make version
+	for dir in openpaperwork-{core,gtk} paperwork-{backend,shell,gtk}; do
+		pushd $dir
+		python setup.py build
+		popd
+	done
+}
+
+do_install() {
+	make -C paperwork-backend data
+        make -C paperwork-gtk/src/paperwork_gtk/icon data	
+	for dir in openpaperwork-{core,gtk} paperwork-{backend,shell,gtk}; do
+		pushd $dir
+		python setup.py install --root=${DESTDIR} --optimize=1 --skip-build
+		popd
+	done
+}

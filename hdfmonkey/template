@@ -1,0 +1,24 @@
+# Template file for 'hdfmonkey'
+pkgname=hdfmonkey
+version=0.4.1
+revision=1
+_commit=76d400f2a492ed10474e8f984e8be73c712fc5a5
+wrksrc="${pkgname}-${_commit}"
+build_style=gnu-configure
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="automake libtool pkg-config"
+makedepends=""
+depends=""
+short_desc="A Swiss Army Knife for manipulating HDF disk images"
+maintainer="Freddy <freddy@freddix.org>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/gasman/hdfmonkey"
+distfiles="https://github.com/gasman/hdfmonkey/archive/${_commit}.tar.gz"
+checksum=a4626986def8b40f0187783af07e241c051e16aa4a3e3b1f8eeede5fae0be910
+
+pre_configure() {
+	autoreconf -fi
+}
