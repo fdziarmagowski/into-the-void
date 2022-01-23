@@ -1,0 +1,70 @@
+From: Thomas Perret <thomas.perret@phyx.fr>
+Date: Sat, 24 Oct 2020 03:44:01 +0200
+Subject: Disable potentially dangerous plugins
+
+Forwarded: not-needed
+---
+ openpaperwork-core/src/openpaperwork_core/__init__.py    | 5 -----
+ paperwork-gtk/src/paperwork_gtk/main.py                  | 3 ---
+ paperwork-gtk/src/paperwork_gtk/model/help/screenshot.sh | 4 ++++
+ 3 files changed, 4 insertions(+), 8 deletions(-)
+
+diff --git a/openpaperwork-core/src/openpaperwork_core/__init__.py b/openpaperwork-core/src/openpaperwork_core/__init__.py
+index e070140..d3a2e36 100644
+--- a/openpaperwork-core/src/openpaperwork_core/__init__.py
++++ b/openpaperwork-core/src/openpaperwork_core/__init__.py
+@@ -46,11 +46,6 @@ RECOMMENDED_PLUGINS = [
+     'openpaperwork_core.work_queue.default',
+ ]
+
+-if os.name != 'nt':
+-    RECOMMENDED_PLUGINS += [
+-        'openpaperwork_core.cmd.chkdeps',
+-    ]
+-
+
+ def _(s):
+     return gettext.dgettext('openpaperwork_core', s)
+diff --git a/paperwork-gtk/src/paperwork_gtk/main.py b/paperwork-gtk/src/paperwork_gtk/main.py
+index 359c4b9..ae704b9 100644
+--- a/paperwork-gtk/src/paperwork_gtk/main.py
++++ b/paperwork-gtk/src/paperwork_gtk/main.py
+@@ -55,7 +55,6 @@ DEFAULT_GUI_PLUGINS = (
+         'paperwork_gtk.actions.page.redo_ocr',
+         'paperwork_gtk.actions.page.reset',
+         'paperwork_gtk.cmd.import',
+-        'paperwork_gtk.cmd.install',
+         'paperwork_gtk.docimport',
+         'paperwork_gtk.doc_selection',
+         'paperwork_gtk.drawer.calibration',
+@@ -149,7 +148,6 @@ DEFAULT_GUI_PLUGINS = (
+         'paperwork_gtk.settings.scanner.settings',
+         'paperwork_gtk.settings.stats',
+         'paperwork_gtk.settings.storage',
+-        'paperwork_gtk.settings.update',
+         'paperwork_gtk.shortcuts.app.find',
+         'paperwork_gtk.shortcuts.doc.new',
+         'paperwork_gtk.shortcuts.doc.prev_next',
+@@ -159,7 +157,6 @@ DEFAULT_GUI_PLUGINS = (
+         'paperwork_gtk.shortcuts.page.edit',
+         'paperwork_gtk.shortcutswin',
+         'paperwork_gtk.sync_on_start',
+-        'paperwork_gtk.update_notification',
+         'paperwork_gtk.widget.flowlayout',
+         'paperwork_gtk.widget.label',
+     ]
+diff --git a/paperwork-gtk/src/paperwork_gtk/model/help/screenshot.sh b/paperwork-gtk/src/paperwork_gtk/model/help/screenshot.sh
+index b19e4d8..aa4a8d0 100755
+--- a/paperwork-gtk/src/paperwork_gtk/model/help/screenshot.sh
++++ b/paperwork-gtk/src/paperwork_gtk/model/help/screenshot.sh
+@@ -39,6 +39,10 @@ paperwork-cli sync
+ echo "Making screenshots ..."
+ paperwork-gtk plugins add openpaperwork_core.interactive
+ 
++echo "Enable plugins disabled in Debian for building"
++paperwork-gtk plugins add paperwork_gtk.settings.update
++paperwork-gtk plugins add paperwork_gtk.update_notification
++
+ paperwork-gtk << EOF
+ wait()
+ core.call_all("doc_open", "20990307_0000_00", "file://${WORKDIR}/20990307_0000_00")

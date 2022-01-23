@@ -1,30 +1,33 @@
 # Template file for 'paperwork'
 pkgname=paperwork
-version=2.0.3
+version=2.1.0
 revision=1
-#wrksrc="pytest-timeout-${version}"
-build_style=meta
-hostmakedepends="git tar wget"
+build_style=gnu-makefile
 makedepends="gettext make which python3-devel python3-setuptools ImageMagick"
-#python3-simplebayes python3-Whoosh python3-Levenshtein python3-Pillow"
-#depends="python3-pytest"
-#checkdepends="${depends} python3-pexpect python3-pytest-cov"
-short_desc="Pytest plugin which will terminate tests after a certain timeout"
-#maintainer="Tim Sandquist <tim.sandquist@gmail.com>"
-license="MIT"
-homepage="https://github.com/pytest-dev/pytest-timeout/"
-#distfiles="${PYPI_SITE}/p/pytest-timeout/pytest-timeout-${version}.tar.gz"
-#checksum=20b3113cf6e4e80ce2d403b6fb56e9e1b871b510259206d40ff8d609f48bda76
-_commit="b6d0a1edfda65635231dc274c4663ca8a9a59c70"
+depends="gtk+3
+libhandy1
+libinsane
+python3-Levenshtein
+python3-Whoosh
+python3-pillowfight
+python3-pillowfight
+python3-pyocr
+python3-scipy
+python3-simplebayes
+tesseract-ocr"
+short_desc="Personal document manager"
+maintainer="Fryderyk Dziarmagowski <freddy@freddix.org>"
+license="GPL-3"
+homepage="https://openpaper.work/"
+distfiles="https://gitlab.gnome.org/World/OpenPaperwork/paperwork/-/archive/${version}/paperwork-${version}.tar.gz"
+checksum="ea49c0d3d0da2333a70e930fdbe4431ae91085fa1e2493868945329096eba1fa"
 
-do_fetch() {
-	git clone https://gitlab.gnome.org/World/OpenPaperwork/paperwork.git ${wrksrc}
-	cd ${wrksrc}
-	git checkout ${_commit}
+pre_build() {
+	cp -v ${FILESDIR}/AUTHORS.git.json AUTHORS.git.json
 }
 
 do_build() {
-	make version
+	make version version=${version}
 	for dir in openpaperwork-{core,gtk} paperwork-{backend,shell,gtk}; do
 		pushd $dir
 		python setup.py build
@@ -41,3 +44,6 @@ do_install() {
 		popd
 	done
 }
+
+# TODO
+# * install .desktop

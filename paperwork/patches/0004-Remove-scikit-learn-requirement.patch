@@ -1,0 +1,24 @@
+From: Thomas Perret <thomas.perret@phyx.fr>
+Date: Mon, 13 Dec 2021 23:06:48 +0100
+Subject: Remove scikit-learn requirement
+ This is a workaround #1001578
+
+Forwarded: not-needed
+
+---
+ paperwork-backend/setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/paperwork-backend/setup.py b/paperwork-backend/setup.py
+index ee96a66..2b2fd77 100755
+--- a/paperwork-backend/setup.py
++++ b/paperwork-backend/setup.py
+@@ -80,7 +80,7 @@ There is no GUI here. The GUI is
+         "pycountry",
+         "pyocr",
+         "pypillowfight>=0.3.0",
+-        "scikit-learn",
++        #  "scikit-learn",
+         "Whoosh",
+         # paperwork-shell chkdeps take care of all the dependencies that can't
+         # be handled here. Mainly, dependencies using gobject introspection

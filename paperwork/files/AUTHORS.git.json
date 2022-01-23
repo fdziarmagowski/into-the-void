@@ -1,0 +1,364 @@
+[
+    {
+        "CLI Frontend": [
+            [
+                "",
+                "Jerome Flesch",
+                7931
+            ],
+            [
+                "",
+                "\u00c5ke Engelbrektson",
+                509
+            ],
+            [
+                "",
+                "\u7389\u5802\u767d\u9e64",
+                494
+            ],
+            [
+                "",
+                "Elliott Sales de Andrade",
+                38
+            ],
+            [
+                "",
+                "Quentin PAG\u00c8S",
+                38
+            ],
+            [
+                "",
+                "LAZIC Anna",
+                24
+            ],
+            [
+                "",
+                "Andreas Forster",
+                18
+            ],
+            [
+                "",
+                "Tobias",
+                4
+            ]
+        ]
+    },
+    {
+        "Documentation": [
+            [
+                "",
+                "Jerome Flesch",
+                2785
+            ],
+            [
+                "",
+                "Baruch Rothkoff",
+                2
+            ],
+            [
+                "",
+                "Elliott Sales de Andrade",
+                1
+            ],
+            [
+                "",
+                "Bastien Nocera",
+                1
+            ]
+        ]
+    },
+    {
+        "Flatpak Integration": [
+            [
+                "",
+                "Jerome Flesch",
+                5271
+            ],
+            [
+                "",
+                "Mathieu Jourdan",
+                11
+            ]
+        ]
+    },
+    {
+        "GTK Frontend": [
+            [
+                "",
+                "Jerome Flesch",
+                36792
+            ],
+            [
+                "",
+                "\u7389\u5802\u767d\u9e64",
+                2232
+            ],
+            [
+                "",
+                "\u00c5ke Engelbrektson",
+                2226
+            ],
+            [
+                "",
+                "Tom F",
+                530
+            ],
+            [
+                "",
+                "Guillaume Girol",
+                231
+            ],
+            [
+                "",
+                "Mathieu Jourdan",
+                210
+            ],
+            [
+                "",
+                "Quentin PAG\u00c8S",
+                139
+            ],
+            [
+                "",
+                "Andreas Forster",
+                60
+            ],
+            [
+                "",
+                "Thomas Perret",
+                36
+            ],
+            [
+                "",
+                "Sergio Antonio Trujillo del Valle",
+                28
+            ],
+            [
+                "",
+                "Marcel Mente",
+                16
+            ],
+            [
+                "",
+                "LAZIC Anna",
+                15
+            ],
+            [
+                "",
+                "Elliott Sales de Andrade",
+                8
+            ],
+            [
+                "",
+                "Benjamin Li",
+                2
+            ],
+            [
+                "",
+                "Gautier Pelloux-Prayer",
+                1
+            ],
+            [
+                "",
+                "Tobias",
+                1
+            ]
+        ]
+    },
+    {
+        "OpenPaperwork Core": [
+            [
+                "",
+                "Jerome Flesch",
+                10762
+            ],
+            [
+                "",
+                "\u00c5ke Engelbrektson",
+                233
+            ],
+            [
+                "",
+                "\u7389\u5802\u767d\u9e64",
+                227
+            ],
+            [
+                "",
+                "Guillaume Girol",
+                28
+            ],
+            [
+                "",
+                "Benjamin Li",
+                25
+            ],
+            [
+                "",
+                "Quentin PAG\u00c8S",
+                24
+            ],
+            [
+                "",
+                "Andreas Forster",
+                17
+            ],
+            [
+                "",
+                "Tobias",
+                10
+            ],
+            [
+                "",
+                "LAZIC Anna",
+                2
+            ],
+            [
+                "",
+                "Elliott Sales de Andrade",
+                1
+            ]
+        ]
+    },
+    {
+        "OpenPaperwork GTK": [
+            [
+                "",
+                "Jerome Flesch",
+                7206
+            ],
+            [
+                "",
+                "\u00c5ke Engelbrektson",
+                172
+            ],
+            [
+                "",
+                "\u7389\u5802\u767d\u9e64",
+                168
+            ],
+            [
+                "",
+                "Quentin PAG\u00c8S",
+                26
+            ],
+            [
+                "",
+                "Tobias",
+                25
+            ],
+            [
+                "",
+                "Mathieu Jourdan",
+                10
+            ],
+            [
+                "",
+                "LAZIC Anna",
+                5
+            ],
+            [
+                "",
+                "Elliott Sales de Andrade",
+                1
+            ],
+            [
+                "",
+                "Tom F",
+                1
+            ]
+        ]
+    },
+    {
+        "Others": [
+            [
+                "",
+                "Jerome Flesch",
+                5609
+            ],
+            [
+                "",
+                "David Auer",
+                2
+            ],
+            [
+                "",
+                "Jordan Christiansen",
+                1
+            ],
+            [
+                "",
+                "Mathieu Jourdan",
+                1
+            ],
+            [
+                "",
+                "Alexandre Vaissi\u00e8re",
+                1
+            ],
+            [
+                "",
+                "Baruch Rothkoff",
+                1
+            ],
+            [
+                "",
+                "Elliott Sales de Andrade",
+                1
+            ]
+        ]
+    },
+    {
+        "Paperwork Backend": [
+            [
+                "",
+                "Jerome Flesch",
+                22352
+            ],
+            [
+                "",
+                "\u00c5ke Engelbrektson",
+                299
+            ],
+            [
+                "",
+                "\u7389\u5802\u767d\u9e64",
+                297
+            ],
+            [
+                "",
+                "Timo Klerx",
+                135
+            ],
+            [
+                "",
+                "Andreas Forster",
+                31
+            ],
+            [
+                "",
+                "Benjamin Li",
+                19
+            ],
+            [
+                "",
+                "Elliott Sales de Andrade",
+                13
+            ],
+            [
+                "",
+                "Quentin PAG\u00c8S",
+                6
+            ],
+            [
+                "",
+                "Tobias",
+                4
+            ],
+            [
+                "",
+                "Matthieu Coudron",
+                1
+            ]
+        ]
+    }
+]

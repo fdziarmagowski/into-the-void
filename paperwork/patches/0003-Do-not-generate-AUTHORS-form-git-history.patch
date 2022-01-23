@@ -1,0 +1,21 @@
+From: Thomas Perret <thomas.perret@phyx.fr>
+Date: Sun, 22 Aug 2021 16:16:31 +0200
+Subject: Do not generate AUTHORS from git history
+
+Forwarded: not-needed
+---
+ paperwork-backend/src/paperwork_backend/authors/Makefile | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/paperwork-backend/src/paperwork_backend/authors/Makefile b/paperwork-backend/src/paperwork_backend/authors/Makefile
+index ae195ab..d6221e3 100644
+--- a/paperwork-backend/src/paperwork_backend/authors/Makefile
++++ b/paperwork-backend/src/paperwork_backend/authors/Makefile
+@@ -1,5 +1,6 @@
+ AUTHORS.git.json:
+-	$(CURDIR)/../../../../tools/get_git_authors.py $(CURDIR)/../../../.. >| $(CURDIR)/AUTHORS.git.json
++	# $(CURDIR)/../../../../tools/get_git_authors.py $(CURDIR)/../../../.. >| $(CURDIR)/AUTHORS.git.json
++	cp $(CURDIR)/../../../../AUTHORS.git.json $(CURDIR)/AUTHORS.git.json
+ 
+ AUTHORS.json: \
+ 		../../../../AUTHORS.ui.json \
