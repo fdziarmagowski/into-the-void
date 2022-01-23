@@ -4,9 +4,8 @@ version=0.3.0
 revision=2
 wrksrc="libpillowfight-${version}"
 build_style=python3-module
-hostmakedepends="python3 python3-setuptools"
-makedepends="make python3-nose python3-setuptools python3-pillow-simd"
-depends=""
+hostmakedepends="python3-devel python3-nose python3-setuptools python3-pillow-simd"
+depends="python3-Pillow"
 short_desc="Python 3 bindings designed to operate on Pillow images"
 maintainer="Fryderyk Dziarmagowski <freddy@freddix.org>"
 license="GPL-2.0"
@@ -15,13 +14,5 @@ distfiles="https://gitlab.gnome.org/World/OpenPaperwork/libpillowfight/-/archive
 checksum="8d075eda288d0d8e6d29ccda40c35bbf40d1703b17177bce826642561dcf3b0b"
 
 do_build() {
-	#make src/pillowfight/_version.h
-	#cmake -B build -DCMAKE_INSTALL_PREFIX='/usr'
-	#python setup.py build
 	make build_py
-}
-
-do_install() {
-	#cmake --install build
-        python setup.py install --root=${DESTDIR} --optimize=1 --skip-build
 }
