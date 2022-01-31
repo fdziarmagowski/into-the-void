@@ -1,0 +1,25 @@
+# Template file for 'dosbox-x'
+pkgname=dosbox-x
+version=0.83.21
+revision=1
+wrksrc="${pkgname}-${pkgname}-v${version}"
+build_style=gnu-configure
+configure_args="--disable-debug --enable-core-inline"
+hostmakedepends="automake libtool pkg-config sed"
+makedepends="alsa-lib-devel fluidsynth-devel libpcap-devel libpng-devel libslirp-devel nasm"
+short_desc="Cross-platform DOS emulation package"
+maintainer="Fryderyk Dziarmagowski <freddy@freddix.org>"
+license="GPL-2.0-or-later"
+homepage="http://dosbox-x.com"
+distfiles="https://github.com/joncampbell123/dosbox-x/archive/dosbox-x-v${version}.tar.gz"
+checksum=ec13bf16a9761c755df25f8b780aee589e328bcd490ac372538f8a87846456a2
+
+# https://github.com/joncampbell123/dosbox-x/blob/master/BUILD.md
+pre_configure() {
+	./autogen.sh
+	chmod +x vs/sdl/build-scripts/strip_fPIC.sh
+	build_pwd=$(pwd)
+	cd vs/sdl && ./build-dosbox.sh
+	cd $build_pwd
+	cd vs/sdlnet && ./build-dosbox.sh
+}
