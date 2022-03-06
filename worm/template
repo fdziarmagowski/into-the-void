@@ -1,0 +1,40 @@
+# Template file for 'worm'
+pkgname=worm
+version=0.2.0
+revision=2
+#archs="i686 x86_64"
+#wrksrc=
+#create_wrksrc=yes
+#build_style=gnu-configure
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="git nim"
+makedepends=""
+depends=""
+short_desc="Tiny, dynamic, tag-based window manager"
+maintainer="Freddy <freddy@freddix.org>"
+license="MIT"
+homepage="https://github.com/codic12/worm"
+distfiles="https://github.com/codic12/worm/archive/refs/tags/v${version}.tar.gz>${pkgname}-${version}.tar.gz"
+checksum=a2943b179f3bdfc06b22235c7146adc1823370fc2163b908603c050c11fd5873
+
+do_build() {
+	nimble -y build -d:release --gc:arc -d:nimDebugDlOpen
+}
+
+do_install() {
+	vdoc README.md
+	vdoc docs/wormc.md
+	vbin worm
+	vbin wormc
+	vlicense LICENSE
+	vmkdir usr/share/examples/worm
+	vcopy examples/rc usr/share/examples/worm
+	vcopy examples/sxhkdrc usr/share/examples/worm
+	vcopy examples/jgmenu_run usr/share/examples/worm
+	vinstall assets/worm.desktop 644 usr/share/xsessions/worm.desktop
+	exit 1
+}
