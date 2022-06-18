@@ -1,0 +1,52 @@
+# Template file for 'libcurl-gnutls'
+pkgname=libcurl-gnutls
+version=7.83.1
+revision=1
+build_style=gnu-configure
+wrksrc=curl-${version}
+configure_args="ac_cv_sizeof_off_t=8 --enable-threaded-resolver --enable-ipv6
+ $(vopt_with rtmp) $(vopt_with gssapi) $(vopt_enable ldap)
+ $(vopt_enable ldap ldaps) $(vopt_with ssh libssh2) $(vopt_with zstd)
+ --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt --without-libidn2
+ --without-ssl --disable-versioned-symbols --disable-static
+ ac_cv_path_NROFF=/usr/bin/mandoc"
+# Use mdocml instead of groff to generate builtin manual to avoid cyclic
+# dependencies.
+hostmakedepends="perl pkg-config mdocml automake gettext libtool"
+makedepends="nghttp2-devel zlib-devel gnutls-devel
+ $(vopt_if gssapi 'mit-krb5-devel') $(vopt_if ldap 'libldap-devel')
+ $(vopt_if rtmp 'librtmp-devel') $(vopt_if ssh 'libssh2-devel')
+ $(vopt_if zstd 'libzstd-devel')"
+depends="ca-certificates"
+# openssh isn't in checkdepends, because test 581 locks up
+checkdepends="python3 stunnel nghttp2 impacket"
+short_desc="cURL library - GNU TLS version"
+maintainer="Fryderyk Dziarmagowski <freddy@freddix.org>"
+license="MIT"
+homepage="https://curl.se"
+changelog="https://curl.se/changes.html#${version//./_}"
+distfiles="${homepage}/download/curl-${version}.tar.bz2"
+checksum=f539a36fb44a8260ec5d977e4e0dbdd2eee29ed90fcedaa9bc3c9f78a113bff0
+build_options="gssapi ldap rtmp ssh zstd"
+build_options_default="ssh zstd"
+
+if [ "$CROSS_BUILD" ]; then
+	hostmakedepends+=" curl"
+fi
+
+pre_configure() {
+	export CFLAGS="${CFLAGS/-D_FORTIFY_SOURCE=2/}"
+	export CFLAGS="${CFLAGS/-I${XBPS_CROSS_BASE}\/usr\/include/}"
+	export CPPFLAGS="-D_FORTIFY_SOURCE=2"
+
+	autoreconf -fi
+}
+
+pre_check() {
+	export USER=nobody
+}
+
+do_install() {
+	make -C lib DESTDIR=${DESTDIR} install
+	rm -f ${DESTDIR}/usr/lib/*.so
+}
