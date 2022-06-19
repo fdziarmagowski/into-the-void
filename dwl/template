@@ -1,0 +1,14 @@
+# Template file for 'dwl'
+pkgname=dwl
+version=0.3.1
+revision=1
+build_style=gnu-makefile
+hostmakedepends="pkg-config"
+makedepends="wlroots-devel wayland-devel libinput-devel"
+depends=""
+short_desc="Compact, hackable compositor for Wayland"
+maintainer="Freddy <freddy@freddix.org>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/djpohly/dwl"
+distfiles="https://github.com/djpohly/dwl/archive/refs/tags/v${version}.tar.gz"
+checksum=5d550b0ee6d99d0b537269b8389af4b95d1ab0b63e7bb8c2309f6c57a2d6c9c9
