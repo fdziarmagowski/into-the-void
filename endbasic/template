@@ -1,0 +1,22 @@
+# Template file for 'endbasic'
+pkgname=endbasic
+version=0.9.0
+revision=1
+wrksrc="${pkgname}-${pkgname}-${version}"
+build_style=cargo
+hostmakedepends="pkg-config"
+makedepends="SDL2-devel SDL2_ttf-devel openssl-devel"
+short_desc="EndBASIC is an interpreter for a BASIC-like language"
+maintainer="Freddy <freddy@freddix.org>"
+license="Apache-Ver-2.0"
+homepage="https://github.com/zee-editor/zee"
+distfiles="https://github.com/endbasic/endbasic/archive/refs/tags/${pkgname}-${version}.tar.gz"
+checksum=c5d6fc1c03564b2b36d9f3bd985e1c5f6c31169ac154371ec666f48ea9652500
+
+do_build() {
+	cargo build --release --target ${RUST_TARGET} --features="sdl"
+}
+
+do_install() {
+	vinstall target/${RUST_TARGET}/release/endbasic 755 usr/bin endbasic
+}
