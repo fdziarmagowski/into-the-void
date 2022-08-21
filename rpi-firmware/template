@@ -35,39 +35,65 @@ do_install() {
 	vinstall ${FILESDIR}/cmdline.txt 644 boot
 	vinstall ${FILESDIR}/config.txt 644 boot
 
-	$XBPS_FETCH_CMD https://raw.githubusercontent.com/RPi-Distro/firmware-nonfree/master/debian/config/misc-nonfree/copyright
+	$XBPS_FETCH_CMD https://raw.githubusercontent.com/RPi-Distro/firmware-nonfree/bullseye/debian/config/brcm80211/copyright
 	vlicense copyright
 
-	# Firmware for rpi3 b and zero wifi chip
-	for f in bin txt; do
-		$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/brcm/brcmfmac43430-sdio.${f}
-		vinstall brcmfmac43430-sdio.${f} 0644 usr/lib/firmware/bcrm
-	done
+	# Wi-Fi firmware
+	for f in bin clm_blob; do
+		$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/cypress/cyfmac43430-sdio.${f}
+		vinstall cyfmac43430-sdio.${f} 0644 usr/lib/firmware/cypress
+  done
 
-	# Firmware for rpi3 b and zero bluetooth chip
-	$XBPS_FETCH_CMD https://github.com/RPi-Distro/bluez-firmware/raw/master/broadcom/BCM43430A1.hcd
-	vinstall BCM43430A1.hcd 0644 usr/lib/firmware/brcm
+	$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/cypress/cyfmac43455-sdio-minimal.bin
+	$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/cypress/cyfmac43455-sdio-standard.bin
+	$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/cypress/cyfmac43455-sdio.clm_blob
+	vinstall cyfmac43455-sdio-minimal.bin 0644 usr/lib/firmware/cypress
+	vinstall cyfmac43455-sdio-standard.bin 0644 usr/lib/firmware/cypress
+	vinstall cyfmac43455-sdio.clm_blob 0644 usr/lib/firmware/cypress
 
-	# Firmware for rpi3 b+ wifi chip
+	$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/brcm/brcmfmac43430-sdio.txt
+	vinstall brcmfmac43430-sdio.txt 0644 usr/lib/firmware/brcm
+
 	for f in bin txt clm_blob; do
-		$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/brcm/brcmfmac43455-sdio.${f}
-		vinstall brcmfmac43455-sdio.${f} 0644 usr/lib/firmware/bcrm
+		$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/brcm/brcmfmac43456-sdio.${f}
+		vinstall brcmfmac43456-sdio.${f} 0644 usr/lib/firmware/brcm
 	done
 
-	# Firmware for rpi3 b+ bluetooth chip
+	for f in bin txt; do
+		$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/brcm/brcmfmac43436s-sdio.${f}
+		vinstall brcmfmac43436s-sdio.${f} 0644 usr/lib/firmware/brcm
+	done
+
+	$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/brcm/brcmfmac43455-sdio.txt
+	vinstall brcmfmac43455-sdio.txt 0644 usr/lib/firmware/brcm
+
+	for f in bin clm_blob; do
+		$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/brcm/brcmfmac43456-sdio.${f}
+		vinstall brcmfmac43456-sdio.${f} 0644 usr/lib/firmware/brcm
+	done
+
+	# Bluetooth firmware
 	$XBPS_FETCH_CMD https://github.com/RPi-Distro/bluez-firmware/raw/master/broadcom/BCM4345C0.hcd
 	vinstall BCM4345C0.hcd 0644 usr/lib/firmware/brcm
 
-	# Firmware for rpi4/rpi400 wifi chip
-	for f in bin txt clm_blob; do
-		$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/brcm/brcmfmac43456-sdio.${f}
-		vinstall brcmfmac43456-sdio.${f} 0644 usr/lib/firmware/bcrm
-	done
+	$XBPS_FETCH_CMD https://github.com/RPi-Distro/bluez-firmware/raw/master/broadcom/BCM43430A1.hcd
+	vinstall BCM43430A1.hcd 0644 usr/lib/firmware/brcm
 
-	# Firmware for rpi4/rpi400 bluetooth chip
 	$XBPS_FETCH_CMD https://github.com/RPi-Distro/bluez-firmware/raw/master/broadcom/BCM4345C5.hcd
 	vinstall BCM4345C5.hcd 0644 usr/lib/firmware/brcm
 
 	$XBPS_FETCH_CMD https://github.com/RPi-Distro/bluez-firmware/raw/master/broadcom/BCM43430B0.hcd
 	vinstall BCM43430B0.hcd 0644 usr/lib/firmware/brcm
+}
+
+post_install() {
+  ln -s /usr/lib/firmware/brcm/brcmfmac43430-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43430-sdio.raspberrypi,3-model-b.txt
+  ln -s /usr/lib/firmware/brcm/brcmfmac43430-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43430-sdio.raspberrypi,model-zero-w.txt
+  ln -s /usr/lib/firmware/brcm/brcmfmac43455-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,3-model-a-plus.txt
+  ln -s /usr/lib/firmware/brcm/brcmfmac43455-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt
+  ln -s /usr/lib/firmware/brcm/brcmfmac43455-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,4-model-b.txt
+  ln -s /usr/lib/firmware/cypress/cyfmac43430-sdio.bin ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43430-sdio.bin
+  ln -s /usr/lib/firmware/cypress/cyfmac43430-sdio.clm_blob ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43430-sdio.clm_blob
+  ln -s /usr/lib/firmware/cypress/cyfmac43455-sdio-standard.bin ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.bin
+  ln -s /usr/lib/firmware/cypress/cyfmac43455-sdio.clm_blob ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.clm_blob
 }
