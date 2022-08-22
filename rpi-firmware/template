@@ -42,7 +42,7 @@ do_install() {
 	for f in bin clm_blob; do
 		$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/cypress/cyfmac43430-sdio.${f}
 		vinstall cyfmac43430-sdio.${f} 0644 usr/lib/firmware/cypress
-  done
+	done
 
 	$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/cypress/cyfmac43455-sdio-minimal.bin
 	$XBPS_FETCH_CMD https://github.com/RPi-Distro/firmware-nonfree/raw/bullseye/debian/config/brcm80211/cypress/cyfmac43455-sdio-standard.bin
@@ -87,13 +87,14 @@ do_install() {
 }
 
 post_install() {
-  ln -s /usr/lib/firmware/brcm/brcmfmac43430-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43430-sdio.raspberrypi,3-model-b.txt
-  ln -s /usr/lib/firmware/brcm/brcmfmac43430-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43430-sdio.raspberrypi,model-zero-w.txt
-  ln -s /usr/lib/firmware/brcm/brcmfmac43455-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,3-model-a-plus.txt
-  ln -s /usr/lib/firmware/brcm/brcmfmac43455-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt
-  ln -s /usr/lib/firmware/brcm/brcmfmac43455-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,4-model-b.txt
-  ln -s /usr/lib/firmware/cypress/cyfmac43430-sdio.bin ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43430-sdio.bin
-  ln -s /usr/lib/firmware/cypress/cyfmac43430-sdio.clm_blob ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43430-sdio.clm_blob
-  ln -s /usr/lib/firmware/cypress/cyfmac43455-sdio-standard.bin ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.bin
-  ln -s /usr/lib/firmware/cypress/cyfmac43455-sdio.clm_blob ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.clm_blob
+	ln -s /usr/lib/firmware/brcm/brcmfmac43456-sdio.bin ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43456-sdio.raspberrypi,400.bin
+	ln -s /usr/lib/firmware/brcm/brcmfmac43430-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43430-sdio.raspberrypi,3-model-b.txt
+	ln -s /usr/lib/firmware/brcm/brcmfmac43430-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43430-sdio.raspberrypi,model-zero-w.txt
+	ln -s /usr/lib/firmware/brcm/brcmfmac43455-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,3-model-a-plus.txt
+	ln -s /usr/lib/firmware/brcm/brcmfmac43455-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt
+	ln -s /usr/lib/firmware/brcm/brcmfmac43455-sdio.txt ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.raspberrypi,4-model-b.txt
+	ln -s /usr/lib/firmware/cypress/cyfmac43430-sdio.bin ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43430-sdio.bin
+	ln -s /usr/lib/firmware/cypress/cyfmac43430-sdio.clm_blob ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43430-sdio.clm_blob
+	ln -s /usr/lib/firmware/cypress/cyfmac43455-sdio-standard.bin ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.bin
+	ln -s /usr/lib/firmware/cypress/cyfmac43455-sdio.clm_blob ${DESTDIR}/usr/lib/firmware/brcm/brcmfmac43455-sdio.clm_blob
 }
