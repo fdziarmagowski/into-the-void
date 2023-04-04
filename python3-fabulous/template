@@ -1,0 +1,17 @@
+# Template file for 'python3-fabulous'
+pkgname=python3-fabulous
+version=0.4.0
+revision=1
+wrksrc="fabulous-${version}"
+build_style=python3-module
+hostmakedepends="python3 python3-setuptools python3-wheel"
+short_desc="Fabulous allows you to print colors, images, and stylized text to the console"
+maintainer="Fryderyk Dziarmagowski <freddy@freddix.org>"
+license="Apache 2.0"
+homepage="https://jart.github.io/fabulous/"
+distfiles="https://github.com/jart/fabulous/releases/download/${version}/fabulous-${version}.tar.gz"
+checksum="60ae547be786b5c19b555939453ea8c1e906b99a93847c8baa65e7154801d14a"
+
+post_install() {
+  vlicense LICENSE.txt LICENSE
+}
