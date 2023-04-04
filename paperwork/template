@@ -1,6 +1,6 @@
 # Template file for 'paperwork'
 pkgname=paperwork
-version=2.1.0
+version=2.1.2
 revision=1
 build_style=gnu-makefile
 makedepends="gettext make which python3-devel python3-setuptools ImageMagick"
@@ -9,30 +9,30 @@ libhandy1
 libinsane
 python3-Levenshtein
 python3-Whoosh
-python3-pillowfight
+python3-fabulous
 python3-pillowfight
 python3-pyocr
-python3-scipy
-python3-simplebayes
+python3-scikit-learn
 tesseract-ocr"
 short_desc="Personal document manager"
 maintainer="Fryderyk Dziarmagowski <freddy@freddix.org>"
 license="GPL-3"
 homepage="https://openpaper.work/"
 distfiles="https://gitlab.gnome.org/World/OpenPaperwork/paperwork/-/archive/${version}/paperwork-${version}.tar.gz"
-checksum="ea49c0d3d0da2333a70e930fdbe4431ae91085fa1e2493868945329096eba1fa"
+checksum="2c650a12595e875f99aba7c213d122491477bf1f4e3b774457db1359df4f5ce7"
 
 pre_build() {
 	cp -v ${FILESDIR}/AUTHORS.git.json AUTHORS.git.json
 }
 
 do_build() {
-	make version version=${version}
 	for dir in openpaperwork-{core,gtk} paperwork-{backend,shell,gtk}; do
 		pushd $dir
+		printf "#stupidBuildSystem\nversion = \"${version}\"" > src/${dir/-/_}/_version.py
 		python setup.py build
 		popd
 	done
+	make l10n_compile
 }
 
 do_install() {
