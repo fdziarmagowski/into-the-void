@@ -1,7 +1,7 @@
 # Template file for 'python3-pillowfight'
 pkgname=python3-pillowfight
 version=0.3.0
-revision=2
+revision=5
 wrksrc="libpillowfight-${version}"
 build_style=python3-module
 hostmakedepends="python3-devel python3-nose python3-setuptools python3-pillow-simd"
@@ -13,6 +13,10 @@ homepage="https://gitlab.gnome.org/World/OpenPaperwork/libpillowfight"
 distfiles="https://gitlab.gnome.org/World/OpenPaperwork/libpillowfight/-/archive/${version}/libpillowfight-${version}.tar.gz"
 checksum="8d075eda288d0d8e6d29ccda40c35bbf40d1703b17177bce826642561dcf3b0b"
 
-do_build() {
-	make build_py
+pre_configure() {
+	echo "#define INTERNAL_PILLOWFIGHT_VERSION \"${version}\"" > src/pillowfight/_version.h
 }
+#do_build() {
+#	python setup.py build
+#	exit 1
+#}
