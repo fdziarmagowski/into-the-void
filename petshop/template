@@ -1,0 +1,23 @@
+# Template file for 'petshop'
+pkgname=petshop
+version=0.1
+revision=1
+#archs="i686 x86_64"
+#wrksrc=
+#create_wrksrc=yes
+build_style=gnu-makefile
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="pkg-config xxd"
+makedepends="SDL2-devel SDL-devel LuaJIT-devel"
+depends=""
+short_desc="Petshop is a PETSCII editor"
+maintainer="Freddy <freddy@freddix.org>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/boomlinde/petshop"
+distfiles="https://github.com/boomlinde/petshop/archive/refs/tags/v${version}.tar.gz"
+#changelog=""
+checksum=9b7741f84adac4e99338853709b1a325ec5ead73329c60a01ce5664ee3a05fc8
