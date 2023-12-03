@@ -12,7 +12,7 @@ maintainer="Fryderyk Dziarmagowski <freddy@freddix.org>"
 license="GPL-3"
 homepage="https://gitlab.gnome.org/World/OpenPaperwork/pyocr"
 distfiles="https://gitlab.gnome.org/World/OpenPaperwork/pyocr/-/archive/${version}/pyocr-${version}.tar.gz"
-checksum="5142802af1f56f2cc47ecb782a8fd1f587a7261fddf5f9097db6932ab3d4b649"
+checksum=24640ff2d10951af0478209ba1e652d2940f167dbcd73650346b287039f76ab2
 
 export ENABLE_SETUPTOOLS_SCM=0
 
