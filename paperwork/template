@@ -1,9 +1,17 @@
 # Template file for 'paperwork'
 pkgname=paperwork
-version=2.1.2
+version=2.2.1
 revision=1
-build_style=gnu-makefile
-makedepends="gettext make which python3-devel python3-setuptools ImageMagick"
+build_style=python3-pep517
+makedepends="gettext
+git
+make
+ImageMagick
+python3-devel
+python3-setuptools
+python3-setuptools_scm
+python3-wheel"
+
 depends="gtk+3
 libhandy1
 libinsane
@@ -18,31 +26,40 @@ short_desc="Personal document manager"
 maintainer="Fryderyk Dziarmagowski <freddy@freddix.org>"
 license="GPL-3"
 homepage="https://openpaper.work/"
-distfiles="https://gitlab.gnome.org/World/OpenPaperwork/paperwork/-/archive/${version}/paperwork-${version}.tar.gz"
-checksum="2c650a12595e875f99aba7c213d122491477bf1f4e3b774457db1359df4f5ce7"
 
-pre_build() {
-	cp -v ${FILESDIR}/AUTHORS.git.json AUTHORS.git.json
+do_fetch() {
+  rm -rf ${wrksrc}
+    git clone \
+      --filter=blob:none \
+      https://gitlab.gnome.org/World/OpenPaperwork/paperwork.git ${wrksrc}
+    cd ${wrksrc}
+    git checkout ${version}
 }
 
 do_build() {
+  : ${make_build_target:=.}
+
+  make l10n_compile
+
 	for dir in openpaperwork-{core,gtk} paperwork-{backend,shell,gtk}; do
 		pushd $dir
-		printf "#stupidBuildSystem\nversion = \"${version}\"" > src/${dir/-/_}/_version.py
-		python setup.py build
+		python3 -m build --no-isolation --wheel \
+		  ${make_build_args} ${make_build_target}
 		popd
 	done
-	make l10n_compile
 }
 
 do_install() {
-	make -C paperwork-backend data
-        make -C paperwork-gtk/src/paperwork_gtk/icon data	
+  : ${make_install_args:=--no-compile-bytecode}
+  : ${make_install_target:="dist/*.whl"}
+
 	for dir in openpaperwork-{core,gtk} paperwork-{backend,shell,gtk}; do
 		pushd $dir
-		python setup.py install --root=${DESTDIR} --optimize=1 --skip-build
+		python3 -m installer --destdir=${DESTDIR} \
+		  ${make_install_args} ${make_install_target}
 		popd
 	done
+
 }
 
 # TODO

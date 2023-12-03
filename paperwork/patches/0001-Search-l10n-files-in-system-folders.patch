@@ -1,33 +1,16 @@
-From: Thomas Perret <thomas.perret@phyx.fr>
-Date: Wed, 18 Aug 2021 21:52:25 +0200
-Subject: Search l10n files in system folders
-
-Forwarded: not-needed
----
- openpaperwork-core/MANIFEST.in                      |  4 +---
- .../src/openpaperwork_core/l10n/python.py           | 11 +----------
- .../src/openpaperwork_core/resources/setuptools.py  | 21 ++++++++++++---------
- openpaperwork-gtk/MANIFEST.in                       |  4 +---
- paperwork-backend/MANIFEST.in                       |  4 +---
- paperwork-gtk/MANIFEST.in                           |  5 +----
- paperwork-shell/MANIFEST.in                         |  4 +---
- 7 files changed, 18 insertions(+), 35 deletions(-)
-
-diff --git a/openpaperwork-core/MANIFEST.in b/openpaperwork-core/MANIFEST.in
-index 8e80203..26bcffb 100644
---- a/openpaperwork-core/MANIFEST.in
-+++ b/openpaperwork-core/MANIFEST.in
+diff -aurN paperwork-2.2.1.orig/openpaperwork-core/MANIFEST.in paperwork-2.2.1/openpaperwork-core/MANIFEST.in
+--- paperwork-2.2.1.orig/openpaperwork-core/MANIFEST.in	2023-10-02 15:12:24.246949696 +0200
++++ paperwork-2.2.1/openpaperwork-core/MANIFEST.in	2023-10-02 15:16:36.916770704 +0200
 @@ -1,4 +1,2 @@
 -recursive-include src *.py *.mo
 -recursive-include tests *
 -include *.md
 +recursive-include src *.py
  include LICENSE
-diff --git a/openpaperwork-core/src/openpaperwork_core/l10n/python.py b/openpaperwork-core/src/openpaperwork_core/l10n/python.py
-index ec78b83..31e9b46 100644
---- a/openpaperwork-core/src/openpaperwork_core/l10n/python.py
-+++ b/openpaperwork-core/src/openpaperwork_core/l10n/python.py
-@@ -65,16 +65,7 @@ class Plugin(PluginBase):
+diff -aurN paperwork-2.2.1.orig/openpaperwork-core/src/openpaperwork_core/l10n/python.py paperwork-2.2.1/openpaperwork-core/src/openpaperwork_core/l10n/python.py
+--- paperwork-2.2.1.orig/openpaperwork-core/src/openpaperwork_core/l10n/python.py	2023-10-02 15:12:24.246949696 +0200
++++ paperwork-2.2.1/openpaperwork-core/src/openpaperwork_core/l10n/python.py	2023-10-02 15:17:20.357428088 +0200
+@@ -68,16 +68,7 @@
          self.l10n_load('openpaperwork_core.l10n', 'openpaperwork_core')
  
      def l10n_load(self, python_package, text_domain):
@@ -45,11 +28,10 @@ index ec78b83..31e9b46 100644
  
          mo_file = gettext.find(text_domain, path)
          if mo_file is None:
-diff --git a/openpaperwork-core/src/openpaperwork_core/resources/setuptools.py b/openpaperwork-core/src/openpaperwork_core/resources/setuptools.py
-index 8cd0885..4a5ad25 100644
---- a/openpaperwork-core/src/openpaperwork_core/resources/setuptools.py
-+++ b/openpaperwork-core/src/openpaperwork_core/resources/setuptools.py
-@@ -28,15 +28,18 @@ class Plugin(PluginBase):
+diff -aurN paperwork-2.2.1.orig/openpaperwork-core/src/openpaperwork_core/resources/setuptools.py paperwork-2.2.1/openpaperwork-core/src/openpaperwork_core/resources/setuptools.py
+--- paperwork-2.2.1.orig/openpaperwork-core/src/openpaperwork_core/resources/setuptools.py	2023-10-02 15:12:24.246949696 +0200
++++ paperwork-2.2.1/openpaperwork-core/src/openpaperwork_core/resources/setuptools.py	2023-10-02 15:18:14.862252893 +0200
+@@ -28,15 +28,18 @@
          if not PKG_RESOURCES_AVAILABLE:
              return
  
@@ -77,30 +59,27 @@ index 8cd0885..4a5ad25 100644
  
          if not os.access(path, os.R_OK):
              LOGGER.warning(
-diff --git a/openpaperwork-gtk/MANIFEST.in b/openpaperwork-gtk/MANIFEST.in
-index 7082085..2974c93 100644
---- a/openpaperwork-gtk/MANIFEST.in
-+++ b/openpaperwork-gtk/MANIFEST.in
+diff -aurN paperwork-2.2.1.orig/openpaperwork-gtk/MANIFEST.in paperwork-2.2.1/openpaperwork-gtk/MANIFEST.in
+--- paperwork-2.2.1.orig/openpaperwork-gtk/MANIFEST.in	2023-10-02 15:12:24.247949711 +0200
++++ paperwork-2.2.1/openpaperwork-gtk/MANIFEST.in	2023-10-02 15:19:07.988037633 +0200
 @@ -1,4 +1,2 @@
 -recursive-include src *.py *.glade *.xml *.css *.svg *.png *.mo
 -recursive-include tests *
 -include *.md
 +recursive-include src *.py *.glade *.xml *.css *.svg *.png
  include LICENSE
-diff --git a/paperwork-backend/MANIFEST.in b/paperwork-backend/MANIFEST.in
-index 216090f..e0ce74e 100644
---- a/paperwork-backend/MANIFEST.in
-+++ b/paperwork-backend/MANIFEST.in
+diff -aurN paperwork-2.2.1.orig/paperwork-backend/MANIFEST.in paperwork-2.2.1/paperwork-backend/MANIFEST.in
+--- paperwork-2.2.1.orig/paperwork-backend/MANIFEST.in	2023-10-02 15:12:24.247949711 +0200
++++ paperwork-2.2.1/paperwork-backend/MANIFEST.in	2023-10-02 15:19:34.332429674 +0200
 @@ -1,4 +1,2 @@
 -recursive-include src *.py *.mo *.json
 -recursive-include tests *
 -include *.markdown
 +recursive-include src *.py *.json
  include LICENSE
-diff --git a/paperwork-gtk/MANIFEST.in b/paperwork-gtk/MANIFEST.in
-index 54c16ac..a951223 100644
---- a/paperwork-gtk/MANIFEST.in
-+++ b/paperwork-gtk/MANIFEST.in
+diff -aurN paperwork-2.2.1.orig/paperwork-gtk/MANIFEST.in paperwork-2.2.1/paperwork-gtk/MANIFEST.in
+--- paperwork-2.2.1.orig/paperwork-gtk/MANIFEST.in	2023-10-02 15:12:24.250949757 +0200
++++ paperwork-2.2.1/paperwork-gtk/MANIFEST.in	2023-10-02 15:19:59.702809581 +0200
 @@ -1,5 +1,2 @@
 -recursive-include src *.py *.glade *.xml *.css *.svg *.png *.pdf *.mo
 -recursive-include tests *
@@ -108,10 +87,9 @@ index 54c16ac..a951223 100644
 -include example-paperwork.conf
 +recursive-include src *.py *.glade *.xml *.css *.svg *.png *.pdf
  include COPYING
-diff --git a/paperwork-shell/MANIFEST.in b/paperwork-shell/MANIFEST.in
-index 0729106..db62ae6 100644
---- a/paperwork-shell/MANIFEST.in
-+++ b/paperwork-shell/MANIFEST.in
+diff -aurN paperwork-2.2.1.orig/paperwork-shell/MANIFEST.in paperwork-2.2.1/paperwork-shell/MANIFEST.in
+--- paperwork-2.2.1.orig/paperwork-shell/MANIFEST.in	2023-10-02 15:12:24.252949787 +0200
++++ paperwork-2.2.1/paperwork-shell/MANIFEST.in	2023-10-02 15:20:21.062130985 +0200
 @@ -1,4 +1,2 @@
 -recursive-include src *.py *.mo *.png
 -recursive-include tests *
