@@ -17,15 +17,15 @@ do_check() {
 }
 
 libinsane-devel_package() {
-	short_desc="Cross-platform library to access scanners - development files"
-        depends="libinsane-${version}_${revision}"
-        pkg_install() {
-                vmove usr/include/libinsane
-                vmove usr/include/libinsane-gobject
-                vmove usr/lib/pkgconfig
-                vmove "usr/lib/*.so"
+  short_desc="Cross-platform library to access scanners - development files"
+  depends="libinsane-${version}_${revision}"
+  pkg_install() {
+    vmove usr/include/libinsane
+    vmove usr/include/libinsane-gobject
+    vmove usr/lib/pkgconfig
+    vmove "usr/lib/*.so"
 		vmove usr/share/gir-1.0
-                vmove usr/share/gtk-doc
-                vmove usr/share/vala
-        }
+    vmove usr/share/gtk-doc
+    vmove usr/share/vala
+  }
 }
