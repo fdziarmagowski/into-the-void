@@ -1,0 +1,28 @@
+# Template file for 'digital'
+pkgname=Digital
+version=0.30
+revision=1
+hostmakedepends="apache-maven git openjdk17 unzip"
+depends="virtual?java-environment"
+short_desc="Easy-to-use digital logic designer and circuit simulator"
+maintainer="Freddy <freddy@freddix.org"
+license="GPL-3.0-or-later"
+homepage="https://github.com/hneemann/Digital"
+
+do_fetch() {
+        rm -rf ${wrksrc}
+        git clone \
+                --filter=blob:none \
+                https://github.com/hneemann/Digital ${wrksrc}
+}
+
+do_build() {
+        source /etc/profile.d/openjdk.sh
+        mvn clean install -P no-git-rev -Dgit.commit.id.describe=${version} -DskipTests
+}
+
+do_install() {
+        vmkdir usr/share/java/${pkgname}
+        vbin ${FILESDIR}/${pkgname}.sh ${pkgname}
+        unzip target/Digital.zip -d ${DESTDIR}/usr/share/java
+}
