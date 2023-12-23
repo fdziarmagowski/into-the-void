@@ -1,0 +1,64 @@
+# Template file for 'st-flexipatch'
+pkgname=st-flexipatch
+version=0.9
+_commit=76cb5801f6b94a56dc144fe8d00b9282fa32a43e
+revision=1
+build_style=gnu-makefile
+make_use_env=compliant
+hostmakedepends="pkg-config"
+makedepends="fontconfig-devel libX11-devel libXft-devel"
+depends="ncurses st-flexipatch-terminfo-${version}_${revision}"
+short_desc="Simple terminal implementation for X - flexipatch"
+maintainer="Freddy <freddy@freddix.org>"
+license="MIT"
+homepage="https://github.com/bakkeby/st-flexipatch"
+distfiles="https://github.com/bakkeby/st-flexipatch/archive/${_commit}.zip"
+checksum=f19e34c2a0a35cb27e6d908cfca06469c0cf5565aa97ce917c9db609b69e5b6f
+
+pre_build() {
+	rm -f config.h patch.h
+	[ -e ${FILESDIR}/config.h ] && cp ${FILESDIR}/config.h config.h
+	mkdir -p ${DESTDIR}/usr/share/terminfo
+}
+
+pre_install() {
+	export TERMINFO=${DESTDIR}/usr/share/terminfo
+}
+
+post_install() {
+	vdoc README
+	vdoc FAQ
+	vlicense LICENSE
+}
+
+st-flexipatch-terminfo_package() {
+	short_desc+=" - terminfo data"
+	pkg_install() {
+		vmove usr/share/terminfo
+	}
+}
+
+# Template file for 'dwm-flexipatch'
+#pkgname=dwm-flexipatch
+#version=6.4
+#revision=1
+#makedepends="libXinerama-devel libXft-devel freetype-devel"
+#short_desc="Dynamic window manager for X - flexipatch"
+#maintainer="Freddy <freddy@freddix.org>"
+#license="MIT"
+#homepage="https://github.com/bakkeby/dwm-flexipatch"
+#distfiles="https://github.com/bakkeby/dwm-flexipatch/archive/${_commit}.zip"
+#checksum=ea2d800ee94c7e60780822c01a6b7a479310e5a565e5a553a5b0b51cca8dbfc7
+#
+#do_build() {
+#        [ -e ${FILESDIR}/config.h ] && cp ${FILESDIR}/config.h config.h
+#        vsed -e "/CFLAGS/s|\${CPPFLAGS}|& $CFLAGS|g" -i config.mk
+#        make CC=$CC INCS="-I. -I${XBPS_CROSS_BASE}/usr/include/freetype2" LIBS="-lX11 -lXinerama -lXft -lfontconfig"
+#}
+#
+#do_install() {
+#        make PREFIX=/usr DESTDIR=$DESTDIR install
+#        vinstall README 644 usr/share/doc/$pkgname
+#        vinstall ${FILESDIR}/dwm.desktop 644 usr/share/xsessions
+#        vlicense LICENSE
+#}
