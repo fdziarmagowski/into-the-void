@@ -1,6 +1,6 @@
 # Template file for 'dosbox-x'
 pkgname=dosbox-x
-version=0.83.21
+version=2023.10.06
 revision=1
 wrksrc="${pkgname}-${pkgname}-v${version}"
 build_style=gnu-configure
@@ -12,14 +12,14 @@ maintainer="Fryderyk Dziarmagowski <freddy@freddix.org>"
 license="GPL-2.0-or-later"
 homepage="http://dosbox-x.com"
 distfiles="https://github.com/joncampbell123/dosbox-x/archive/dosbox-x-v${version}.tar.gz"
-checksum=ec13bf16a9761c755df25f8b780aee589e328bcd490ac372538f8a87846456a2
+checksum=65f756e29f9c9b898fdbd22b0cb9b3b24c6e3becb5dcda588aa20a3fde9539a5
 
 # https://github.com/joncampbell123/dosbox-x/blob/master/BUILD.md
 pre_configure() {
-	./autogen.sh
-	chmod +x vs/sdl/build-scripts/strip_fPIC.sh
-	build_pwd=$(pwd)
-	cd vs/sdl && ./build-dosbox.sh
-	cd $build_pwd
-	cd vs/sdlnet && ./build-dosbox.sh
+  ./autogen.sh
+  chmod +x vs/sdl/build-scripts/strip_fPIC.sh
+  build_pwd=$(pwd)
+  cd vs/sdl && ./build-dosbox.sh
+  cd $build_pwd
+  cd vs/sdlnet && ./build-dosbox.sh
 }
