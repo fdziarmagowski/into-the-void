@@ -1,0 +1,14 @@
+# Template file for 'fuse-emulator-utils'
+pkgname=fuse-emulator-utils
+version=1.4.3
+revision=1
+build_style=gnu-configure
+hostmakedepends="pkg-config"
+makedepends="audiofile-devel glib-devel libgcrypt-devel libpng-devel
+ libspectrum-devel libjpeg-turbo-devel"
+short_desc="Various ZX Spectrum related utilities"
+maintainer="Freddy <freddy@freddix.org>"
+license="GPL-2.0-or-later"
+homepage="http://fuse-emulator.sourceforge.net"
+distfiles="${SOURCEFORGE_SITE}/fuse-emulator/fuse-utils-${version}.tar.gz"
+checksum=0d2588bc37fcc6b039010c9ed68aa1e0bf513a80978737b5545f1d4f1684c325
