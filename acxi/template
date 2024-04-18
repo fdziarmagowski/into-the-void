@@ -1,0 +1,17 @@
+# Template file for 'acxi'
+pkgname=acxi
+version=3.6.02
+revision=1
+depends="perl-Parallel-ForkManager vorbis-tools"
+short_desc="A command line audio processing tool"
+maintainer="Freddy <freddy@freddix.org>"
+license="GPL-3.0-or-later"
+homepage="https://codeberg.org/smxi/acxi"
+distfiles="https://codeberg.org/smxi/acxi/archive/${version}.tar.gz"
+checksum=5f6abcb650a639950890062354a97b62004fadef58d0d06e1c2ae225a48a5222
+
+do_install() {
+    vbin acxi
+		vconf acxi.conf
+		vman acxi.1
+}
