@@ -1,10 +1,10 @@
 # Template file for 'paperwork'
 pkgname=paperwork
-version=2.2.1
+version=2.2.3
 revision=1
 build_style=python3-pep517
-makedepends="gettext
-git
+hostmakedepends="gettext which"
+makedepends="git
 make
 ImageMagick
 python3-devel
@@ -15,11 +15,13 @@ python3-wheel"
 depends="gtk+3
 libhandy1
 libinsane
-python3-Levenshtein
 python3-Whoosh
+python3-distro
 python3-fabulous
+python3-gobject
 python3-pillowfight
 python3-pyocr
+python3-rich
 python3-scikit-learn
 tesseract-ocr"
 short_desc="Personal document manager"
