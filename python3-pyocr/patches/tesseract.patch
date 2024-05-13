@@ -1,0 +1,12 @@
+diff -aurN pyocr-0.8.5.orig/src/pyocr/tesseract.py pyocr-0.8.5/src/pyocr/tesseract.py
+--- pyocr-0.8.5.orig/src/pyocr/tesseract.py	2024-04-11 23:15:16.574701621 +0200
++++ pyocr-0.8.5/src/pyocr/tesseract.py	2024-04-11 23:15:37.350497289 +0200
+@@ -29,7 +29,7 @@
+ from .util import digits_only
+ 
+ # CHANGE THIS IF TESSERACT IS NOT IN YOUR PATH, OR IS NAMED DIFFERENTLY
+-TESSERACT_CMD = 'tesseract.exe' if os.name == 'nt' else 'tesseract'
++TESSERACT_CMD = 'tesseract.exe' if os.name == 'nt' else 'tesseract-ocr'
+ 
+ TESSDATA_EXTENSION = ".traineddata"
+ 
