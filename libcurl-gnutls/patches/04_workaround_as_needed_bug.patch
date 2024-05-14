@@ -1,16 +1,21 @@
-Description: Work around libtool --as-needed reordering bug
+From: Alessandro Ghedini <ghedo@debian.org>
+Date: Wed, 27 Mar 2024 18:10:56 +0000
+Subject: Work around libtool --as-needed reordering bug
+
 Origin: vendor
 Bug-Debian: http://bugs.debian.org/347650
 Forwarded: not-needed
-Author: Alessandro Ghedini <ghedo@debian.org>
 Reviewed-by: Alessandro Ghedini <ghedo@debian.org>
 Last-Update: 2016-08-03
+---
+ ltmain.sh | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-Index: curl/ltmain.sh
-===================================================================
---- curl.orig/ltmain.sh
-+++ curl/ltmain.sh
-@@ -7500,6 +7500,11 @@ func_mode_link ()
+diff --git a/ltmain.sh b/ltmain.sh
+index 1dea62a..abf6724 100755
+--- a/ltmain.sh
++++ b/ltmain.sh
+@@ -7488,6 +7488,11 @@ func_mode_link ()
  	arg=$func_stripname_result
  	;;
  
@@ -22,7 +27,7 @@ Index: curl/ltmain.sh
        -Wl,*)
  	func_stripname '-Wl,' '' "$arg"
  	args=$func_stripname_result
-@@ -7899,6 +7904,15 @@ func_mode_link ()
+@@ -7887,6 +7892,15 @@ func_mode_link ()
  	lib=
  	found=false
  	case $deplib in

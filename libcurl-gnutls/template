@@ -1,6 +1,6 @@
 # Template file for 'libcurl-gnutls'
 pkgname=libcurl-gnutls
-version=7.83.1
+version=8.7.1
 revision=1
 build_style=gnu-configure
 wrksrc=curl-${version}
@@ -26,7 +26,7 @@ license="MIT"
 homepage="https://curl.se"
 changelog="https://curl.se/changes.html#${version//./_}"
 distfiles="${homepage}/download/curl-${version}.tar.bz2"
-checksum=f539a36fb44a8260ec5d977e4e0dbdd2eee29ed90fcedaa9bc3c9f78a113bff0
+checksum=05bbd2b698e9cfbab477c33aa5e99b4975501835a41b7ca6ca71de03d8849e76
 build_options="gssapi ldap rtmp ssh zstd"
 build_options_default="ssh zstd"
 
