@@ -1,0 +1,14 @@
+# Template file for 'jack_delay'
+pkgname=jack_delay
+version=0.4.2
+revision=1
+build_style=gnu-makefile
+build_wrksrc="source"
+makedepends="alsa-lib-devel jack-devel"
+depends="jack"
+short_desc="Measure roundtrip latency of a sound card"
+maintainer="Freddy <freddy@freddix.org>"
+license="GPL-2.0"
+homepage="https://kokkinizita.linuxaudio.org/linuxaudio"
+distfiles="https://kokkinizita.linuxaudio.org/linuxaudio/downloads/${pkgname}-${version}.tar.bz2"
+checksum=a0d5b363af309c317dad53ab884882bb714f95f8a11cbd2192cfe9d4fc1ab9b6
