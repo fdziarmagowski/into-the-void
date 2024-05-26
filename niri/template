@@ -1,0 +1,25 @@
+# Template file for 'niri'
+pkgname=niri
+version=0.1.6
+revision=1
+build_style=cargo
+hostmakedepends="pkg-config"
+makedepends="
+ clang
+ eudev-libudev-devel
+ glib-devel
+ libgbm-devel
+ libinput-devel
+ libseat-devel
+ libxkbcommon-devel
+ pango-devel
+ pipewire-devel
+ wayland-devel
+ wayland-protocols"
+depends=""
+short_desc="Scrollable-tiling Wayland compositor"
+maintainer="Freddy <freddy@freddix.org>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/YaLTeR/niri"
+distfiles="https://github.com/YaLTeR/niri/archive/refs/tags/v${version}.tar.gz"
+checksum=5bfdbfa72ed527790117b841a7a6ebe15dff216bff9210ea0b8841bb6f338614
