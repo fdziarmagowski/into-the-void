@@ -1,0 +1,14 @@
+# Template file for 'git-credential-gopass'
+pkgname=git-credential-gopass
+version=1.15.13
+revision=1
+build_style=go
+build_helper=qemu
+go_import_path=github.com/gopasspw/git-credential-gopass
+depends="gopass"
+short_desc="Gopass git-credentials helper"
+maintainer="Freddy <freddy@freddix.org>"
+license="MIT"
+homepage="https://github.com/gopasspw/git-credential-gopass"
+distfiles="https://github.com/gopasspw/git-credential-gopass/archive/refs/tags/v${version}.tar.gz"
+checksum=4261fe2630ce8e9882dc0d163c3f406132b695c7fdd8cb6c7e2080e06b93afab
