@@ -1,0 +1,17 @@
+# Template file for 'dwl'
+pkgname=dwl
+version=0.7
+revision=1
+build_style=gnu-makefile
+hostmakedepends="pkg-config"
+makedepends="wlroots0.18-devel wayland-devel libinput-devel"
+short_desc="Compact, hackable compositor for Wayland"
+maintainer="Freddy <freddy@freddix.org>"
+license="GPL-3.0-or-later"
+homepage="https://codeberg.org/dwl"
+distfiles="https://codeberg.org/dwl/dwl/releases/download/v0.7/dwl-v${version}.tar.gz"
+checksum=16e1412385f5fecaea997f734cb290f2bc412929da5b523c7c5180c6bd9402ea
+
+pre_build() {
+  [ -e ${FILESDIR}/config.def.h ] && cp ${FILESDIR}/config.def.h config.h
+}

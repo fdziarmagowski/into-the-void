@@ -1,0 +1,27 @@
+From 7433a1ff990635b7f200c07306d5b69ceaa64a7b Mon Sep 17 00:00:00 2001
+From: Raphael Robatsch <raphael-git@tapesoftware.net>
+Date: Thu, 30 Nov 2023 17:11:26 +0100
+Subject: [PATCH] Loosen required zwlr_layer_shell_v1 version
+
+Version 1 is enough for somebar. dwl exports version 3 but we don't even
+need to go that high.
+---
+ src/main.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/main.cpp b/src/main.cpp
+index 6274959..15a749a 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -403,7 +403,7 @@ void onGlobalAdd(void*, wl_registry* registry, uint32_t name, const char* interf
+ 	auto reg = HandleGlobalHelper { registry, name, interface };
+ 	if (reg.handle(compositor, wl_compositor_interface, 4)) return;
+ 	if (reg.handle(shm, wl_shm_interface, 1)) return;
+-	if (reg.handle(wlrLayerShell, zwlr_layer_shell_v1_interface, 4)) return;
++	if (reg.handle(wlrLayerShell, zwlr_layer_shell_v1_interface, 1)) return;
+ 	if (reg.handle(xdgOutputManager, zxdg_output_manager_v1_interface, 3)) return;
+ 	if (reg.handle(xdgWmBase, xdg_wm_base_interface, 2)) {
+ 		xdg_wm_base_add_listener(xdgWmBase, &xdgWmBaseListener, nullptr);
+-- 
+2.45.2
+

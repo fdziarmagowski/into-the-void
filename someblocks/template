@@ -1,0 +1,15 @@
+# Template file for 'someblocks'
+pkgname=someblocks
+version=1.0.1
+revision=1
+build_style=gnu-makefile
+short_desc="Modular status bar for somebar"
+maintainer="Freddy <freddy@freddix.org>"
+license="GPL-3.0-or-later"
+homepage="https://git.sr.ht/~raphi/someblocks"
+distfiles="https://git.sr.ht/~raphi/someblocks/archive/${version}.tar.gz"
+checksum=dbabd88e7cd91b430eece80adbc9876db39b38a5dc080e18795621fa5ec68fb2
+
+pre_build() {
+  [ -e ${FILESDIR}/blocks.def.h ] && cp ${FILESDIR}/blocks.def.h blocks.h
+}
